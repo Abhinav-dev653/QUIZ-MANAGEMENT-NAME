@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff512f, #dd2476);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.4);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 320px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .remember input {
+      margin-right: 8px;
+    }
+
+    .login-box button {
+      width: 95%;
+      padding: 12px;
+      background: #ff512f;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-box button:hover {
+      background: #dd2476;
+    }
+
+    .login-box p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-box a {
+      color: #ff512f;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <img src="360_F_348552050_uSbrANL65DNj21FbaCeswpM33mat1Wll.jpg" width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: -1;">
+
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <form id="adminForm">
+      <input type="text" id="adminName" placeholder="Admin Name" required>
+      <input type="password" id="adminPassword" placeholder="Password" required>
+
+      <div class="remember">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Remember Me</label>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+    <p>Don’t have an account? <a href="admin-register.html" target="_blank">Register here</a></p>
+  </div>
+
+  <script>
+    document.getElementById("adminForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const adminName = document.getElementById("adminName").value.trim();
+      const adminPassword = document.getElementById("adminPassword").value.trim();
+
+      // Simple authentication (change credentials as needed)
+      const correctName = "admin";
+      const correctPass = "12345";
+
+      if (adminName === correctName && adminPassword === correctPass) {
+        // Redirect to dashboard with admin name in URL
+        window.location.href = "admin-dashboard.html?name=" + encodeURIComponent(adminName);
+      } else {
+        alert("❌ Invalid Username or Password!");
+      }
+    });
+  </script>
+</body>
+</html>

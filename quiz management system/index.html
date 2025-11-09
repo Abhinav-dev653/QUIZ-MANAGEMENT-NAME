@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quiz Management System | Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #003488;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #003488;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      width: 85%;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 40px;
+      border-radius: 10px;
+    }
+
+    .intro-section {
+      margin-bottom: 40px;
+    }
+
+    .intro-section h2 {
+      color: #003488;
+      margin-bottom: 15px;
+    }
+
+    .intro-section p {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .features {
+      margin-top: 20px;
+    }
+
+    .features ul {
+      list-style: square;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+
+    .features ul li {
+      margin-bottom: 8px;
+    }
+
+    .user-selection {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .user-selection h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #003488;
+    }
+
+    .user-selection a {
+      text-decoration: none;
+      background-color: #003488;
+      color: white;
+      padding: 15px 25px;
+      margin: 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .user-selection a:hover {
+      background-color: #0055cc;
+    }
+
+    /* Feedback button styling */
+    .feedback-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #003488;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 15px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .feedback-btn:hover {
+      background-color: #0055cc;
+      transform: scale(1.05);
+    }
+
+    /* Feedback Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      color: black;
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-content h3 {
+      color: #003488;
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      border-radius: 5px;
+      padding: 10px;
+      resize: none;
+    }
+
+    .modal-content button {
+      background-color: #003488;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modal-content button:hover {
+      background-color: #0055cc;
+    }
+  </style>
+</head>
+<body>
+  <img src="1209397.jpg" width="100%" height="130%" style="position: absolute; top: 0; left: 0; z-index: -1;">
+  
+  <header>
+    <h1>Quiz Management System</h1>
+  </header>
+
+  <div class="container">
+    <section class="intro-section">
+      <h2>Welcome to the Quiz Management System</h2>
+      <p>
+        This system provides an interactive platform for educational institutions, trainers, or organizations
+        to manage quizzes and assessments online. It is built to ensure a seamless experience for both
+        administrators and students.
+      </p>
+      <p>
+        Whether you're managing thousands of students or just hosting a quick training session, this system
+        enables efficient quiz creation, evaluation, and performance tracking.
+      </p>
+    </section>
+
+    <section class="features">
+      <h2>Main Features</h2>
+      <ul>
+        <li>Admin panel for managing quizzes, users, and results</li>
+        <li>Student portal to take quizzes and view performance</li>
+        <li>Multiple question types: MCQ, True/False, Short Answer</li>
+        <li>Real-time quiz evaluation and instant results</li>
+        <li>Secure login for both Admin and Students</li>
+        <li>Responsive and user-friendly design</li>
+      </ul>
+    </section>
+
+    <section class="user-selection">
+      <h2>Choose Your Role to Proceed</h2>
+      <a href="admin_login.html" target="_blank">🔒 Admin Login</a>
+      <a href="student_login.html" target="_blank">🎓 Student Login</a>
+    </section>
+  </div>
+
+  <!-- Feedback Button -->
+  <button class="feedback-btn" id="feedbackBtn">💬 Feedback</button>
+
+  <!-- Feedback Modal -->
+  <div class="modal" id="feedbackModal">
+    <div class="modal-content">
+      <h3>We Value Your Feedback 😊</h3>
+      <textarea id="feedbackText" placeholder="Enter your feedback here..."></textarea><br>
+      <button id="submitFeedback">Submit</button>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const feedbackBtn = document.getElementById("feedbackBtn");
+    const modal = document.getElementById("feedbackModal");
+    const submitBtn = document.getElementById("submitFeedback");
+
+    feedbackBtn.onclick = () => modal.style.display = "flex";
+    function closeModal() { modal.style.display = "none"; }
+
+    submitBtn.onclick = () => {
+      const feedback = document.getElementById("feedbackText").value.trim();
+      if (feedback === "") {
+        alert("Please enter feedback before submitting.");
+        return;
+      }
+      alert("Thank you for your feedback!");
+      localStorage.setItem("userFeedback", feedback);
+      document.getElementById("feedbackText").value = "";
+      closeModal();
+    }
+  </script>
+</body>
+</html>

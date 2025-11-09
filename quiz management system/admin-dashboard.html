@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      border-right: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar h2 {
+      margin-bottom: 3rem;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .sidebar button {
+      background: #6a11cb;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 10px 0;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #2575fc, #6a11cb);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    th {
+      background: rgba(0, 0, 0, 0.4);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    tr:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Feedback Section */
+    .feedback-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .feedback-box:hover {
+      transform: scale(1.02);
+    }
+
+    .feedback-box h3 {
+      color: #00d4ff;
+      margin-bottom: 0.5rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin Dashboard</h2>
+    <button onclick="showSection('scores')">📊 Student Scores</button>
+    <button onclick="showSection('feedback')">💬 Feedback</button>
+  </div>
+
+  <div class="main-content">
+    <!-- Student Scores -->
+    <div id="scores-section">
+      <h1>📘 Student Scores</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Registration No</th>
+            <th>Subject</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="scoreTableBody">
+          <!-- Filled by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Feedback Section -->
+    <div id="feedback-section" class="hidden">
+      <h1>💬 Student Feedback</h1>
+      <div id="feedbackContainer">
+        <!-- Feedback data inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(section) {
+      document.getElementById('scores-section').classList.add('hidden');
+      document.getElementById('feedback-section').classList.add('hidden');
+
+      if (section === 'scores') {
+        document.getElementById('scores-section').classList.remove('hidden');
+      } else if (section === 'feedback') {
+        document.getElementById('feedback-section').classList.remove('hidden');
+      }
+    }
+
+    // Load Student Scores from localStorage
+    const studentScores = JSON.parse(localStorage.getItem('studentScores')) || [];
+    const scoreTableBody = document.getElementById('scoreTableBody');
+
+    studentScores.forEach((student) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${student.name}</td>
+        <td>${student.registration}</td>
+        <td>${student.subject}</td>
+        <td>${student.score}</td>
+      `;
+      scoreTableBody.appendChild(row);
+    });
+
+    // Load Feedback from localStorage
+    const feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+    const feedbackContainer = document.getElementById('feedbackContainer');
+
+    feedbacks.forEach((fb) => {
+      const box = document.createElement('div');
+      box.classList.add('feedback-box');
+      box.innerHTML = `
+        <h3>${fb.name}</h3>
+        <p><strong>Registration:</strong> ${fb.registration}</p>
+        <p><strong>Message:</strong> ${fb.message}</p>
+      `;
+      feedbackContainer.appendChild(box);
+    });
+  </script>
+
+</body>
+</html>

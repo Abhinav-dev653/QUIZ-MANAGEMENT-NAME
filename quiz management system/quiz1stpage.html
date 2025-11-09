@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Selection</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0px 0px 15px rgba(0, 191, 255, 0.8);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 50px;
+      opacity: 0.9;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .quiz-container {
+      display: flex;
+      gap: 60px;
+    }
+
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 60px 80px;
+      font-size: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      transition: all 0.4s ease-in-out;
+      box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 180deg at 50% 50%, #00c6ff, #0072ff, #00c6ff);
+      animation: rotate 8s linear infinite;
+      z-index: 0;
+      opacity: 0.35;
+    }
+
+    .quiz-card span {
+      z-index: 1;
+      font-weight: bold;
+      text-shadow: 0 0 12px rgba(0, 191, 255, 0.7);
+    }
+
+    .quiz-btn {
+      margin-top: 20px;
+      background: #00bcd4;
+      color: white;
+      border: none;
+      padding: 14px 35px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 1;
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.7);
+    }
+
+    .quiz-btn:hover {
+      background: #0097a7;
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(0, 188, 212, 1);
+    }
+
+    .quiz-card:hover {
+      transform: translateY(-12px) scale(1.05);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Animations */
+    @keyframes rotate {
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating glowing circles */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(0, 191, 255, 0.15);
+      animation: float 12s infinite ease-in-out;
+    }
+
+    .circle:nth-child(1) {
+      width: 120px; height: 120px;
+      top: 15%; left: 10%;
+      animation-delay: 0s;
+    }
+
+    .circle:nth-child(2) {
+      width: 200px; height: 200px;
+      bottom: 10%; right: 15%;
+      animation-delay: 3s;
+    }
+
+    .circle:nth-child(3) {
+      width: 80px; height: 80px;
+      bottom: 20%; left: 25%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+    
+  <h1>💡 Welcome to the Quiz Portal 💡</h1>
+  <p>Choose your category and test your knowledge 🌊</p>
+
+  <div class="quiz-container">
+    <!-- Technical Subjects -->
+    <a href="ts.html" class="quiz-card">
+      <span>⚡ Technical Subjects</span>
+      <button class="quiz-btn">Explore</button>
+    </a>
+
+    <!-- Non-Technical Subjects -->
+    <a href="nts.html" class="quiz-card">
+      <span>📚 Non-Technical Subjects</span>
+      <button class="quiz-btn">Explore</button>
+    </a>
+  </div>
+
+  <!-- Floating circles for decoration -->
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+
+</body>
+</html>
